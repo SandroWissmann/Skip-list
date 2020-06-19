@@ -44,3 +44,23 @@ TEST_F(Skip_list_iterator, equal)
 
     EXPECT_TRUE(it1 == it2);    
 }
+
+
+TEST(Skip_list, empty)
+{
+    Skip_list<int, int> obj;
+
+    EXPECT_TRUE(obj.empty());
+
+    obj.insert({ std::make_pair( 1 ,  10 ) });
+
+    EXPECT_FALSE(obj.empty());
+}
+
+TEST(Skip_list, maxSize)
+{
+    Skip_list<int, int> obj;
+
+    EXPECT_EQ(obj.max_size(), (std::size_t{} -1));
+}
+
