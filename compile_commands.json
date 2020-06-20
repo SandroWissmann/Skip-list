@@ -1,0 +1,27 @@
+[
+{
+  "directory": "/mnt/Programmierung/GitHub/Skiplist",
+  "command": "/usr/bin/c++   -I/mnt/Programmierung/GitHub/Skiplist/include -isystem /mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googletest/include -isystem /mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googletest    -std=c++17 -o CMakeFiles/test.dir/test/skip_list_test.cpp.o -c /mnt/Programmierung/GitHub/Skiplist/test/skip_list_test.cpp",
+  "file": "/mnt/Programmierung/GitHub/Skiplist/test/skip_list_test.cpp"
+},
+{
+  "directory": "/mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googlemock",
+  "command": "/usr/bin/c++   -I/mnt/Programmierung/GitHub/Skiplist/include -isystem /mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googlemock/include -isystem /mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googlemock -isystem /mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googletest/include -isystem /mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googletest    -std=c++17 -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -c /mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googlemock/src/gmock_main.cc",
+  "file": "/mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googlemock/src/gmock_main.cc"
+},
+{
+  "directory": "/mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googlemock",
+  "command": "/usr/bin/c++   -I/mnt/Programmierung/GitHub/Skiplist/include -I/mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googlemock/include -I/mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googlemock -isystem /mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googletest/include -isystem /mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googletest    -std=c++17 -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googlemock/src/gmock-all.cc",
+  "file": "/mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googlemock/src/gmock-all.cc"
+},
+{
+  "directory": "/mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googletest",
+  "command": "/usr/bin/c++   -I/mnt/Programmierung/GitHub/Skiplist/include -isystem /mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googletest/include -isystem /mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googletest    -std=c++17 -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googletest/src/gtest_main.cc",
+  "file": "/mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googletest/src/gtest_main.cc"
+},
+{
+  "directory": "/mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googletest",
+  "command": "/usr/bin/c++   -I/mnt/Programmierung/GitHub/Skiplist/include -I/mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googletest/include -I/mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googletest    -std=c++17 -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googletest/src/gtest-all.cc",
+  "file": "/mnt/Programmierung/GitHub/Skiplist/thirdparty/googletest/googletest/src/gtest-all.cc"
+}
+]
