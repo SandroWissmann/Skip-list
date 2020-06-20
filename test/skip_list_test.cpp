@@ -64,3 +64,26 @@ TEST(Skip_list, maxSize)
     EXPECT_EQ(obj.max_size(), (std::size_t{} -1));
 }
 
+TEST(Skip_list, insert_and_erase)
+{
+    Skip_list<int, int> obj;
+    std::vector<int> keys{ 1,6,2,7,3,8,4,9,5 };
+
+    for (const auto& key : keys) {
+        auto position = obj.insert(std::make_pair(key ,  key + 10 ));
+
+        EXPECT_EQ((*position.first).first, key);
+        EXPECT_TRUE(position.second);
+    }
+
+    std::sort(keys.begin(), keys.end());
+
+    for (const auto& key : keys) {
+        EXPECT_EQ(obj.erase(key), 1);
+    }
+
+    constexpr auto keyNotInList = 100;
+    EXPECT_EQ(obj.erase(keyNotInList), 0);
+
+    EXPECT_TRUE(obj.empty());
+}
