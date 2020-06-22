@@ -45,7 +45,6 @@ TEST_F(Skip_list_iterator, equal)
     EXPECT_TRUE(it1 == it2);    
 }
 
-
 TEST(Skip_list, empty)
 {
     Skip_list<int, int> obj;
@@ -86,4 +85,47 @@ TEST(Skip_list, insert_and_erase)
     EXPECT_EQ(obj.erase(keyNotInList), 0);
 
     EXPECT_TRUE(obj.empty());
+}
+
+TEST(Skip_list, insert_same_key_twice)
+{
+    Skip_list<int, int> obj;
+
+    obj.insert(std::make_pair( 1 ,  5 ));
+
+    ASSERT_EQ(obj.size(), 1);
+    EXPECT_EQ(obj[1], 5);
+
+    obj.insert(std::make_pair( 1 ,  10 ));
+
+    ASSERT_EQ(obj.size(), 1);
+    EXPECT_EQ(obj[1], 10);
+}
+
+TEST(Skip_list, iterator_find)
+{
+    Skip_list<int, int> obj;
+    std::vector<int> keys{ 1,6,2,7,3,8,4,9,5 };
+
+    for (const auto& key : keys){
+        auto value = key + 10;
+        obj.insert(std::make_pair(key, value ));
+    }
+    std::sort(keys.begin(), keys.end());
+
+
+    for (const auto& key : keys) {
+        const int search_value = key + 10;
+
+        auto it = obj.find(key);
+
+        ASSERT_TRUE(it != obj.end());
+        EXPECT_EQ(it->second , search_value);
+    }
+
+    const int invalid_key = keys.back() + 1;
+
+    auto it = obj.find(invalid_key);		
+
+    EXPECT_TRUE(it == obj.end());
 }
