@@ -129,3 +129,29 @@ TEST(Skip_list, iterator_find)
 
     EXPECT_TRUE(it == obj.end());
 }
+
+TEST(Skip_list, operator_access)
+{
+    Skip_list<int, int> obj;
+
+    obj.insert(std::make_pair(1, 10));
+    obj.insert(std::make_pair(2, 20));
+    obj.insert(std::make_pair(3, 30));
+
+    EXPECT_EQ(obj[1], 10);
+    EXPECT_EQ(obj[2], 20);
+    EXPECT_EQ(obj[3], 30);
+}
+
+TEST(Skip_list, operator_access_const)
+{
+    Skip_list<int, int> obj;
+
+    obj.insert(std::make_pair(1, 10));
+    obj.insert(std::make_pair(2, 20));
+    obj.insert(std::make_pair(3, 30));
+
+    const int key = 2;
+
+    EXPECT_EQ(obj[key], 20);
+}
