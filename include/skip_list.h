@@ -33,7 +33,7 @@ public:
 
         explicit iterator_base(node_type* pos) : curr{pos} {};
 
-        iterator_base& operator=(const iterator_base& other) // copy assignment
+        iterator_base& operator=(const iterator_base& other) 
         {
             curr = other.curr;
             return *this;
