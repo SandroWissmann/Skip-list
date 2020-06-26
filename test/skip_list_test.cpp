@@ -24,20 +24,53 @@ protected:
     Skip_list<int, int> obj;
 };
 
-TEST_F(Skip_list_iterator, notEqual)
+TEST_F(Skip_list_iterator, operator_asignment)
 {
     auto it1 = obj.begin();
-    auto it2 = obj.end();
+    auto it2 = it1;
 
-    EXPECT_TRUE(it1 != it2);
+    EXPECT_EQ(it1 , it2);
+    EXPECT_EQ(it1->first, it2->first);
+    EXPECT_EQ(it1->second, it2->second);
 }
 
-TEST_F(Skip_list_iterator, equal)
+TEST_F(Skip_list_iterator, operator_bigger)
+{
+    auto it1 = obj.begin();
+    auto it2 = ++it1;
+    auto it3 = ++it2;
+
+    EXPECT_FALSE(it1 > it1);
+    EXPECT_FALSE(it1 > it2);
+    EXPECT_FALSE(it1 > it3);
+    EXPECT_TRUE(it2 > it1);
+    EXPECT_FALSE(it2 > it2);
+    EXPECT_FALSE(it2 > it3);
+    EXPECT_TRUE(it3 > it1);
+    EXPECT_TRUE(it3 > it2);
+    EXPECT_FALSE(it3 > it3);
+
+    auto itEnd = obj.end();
+
+    EXPECT_TRUE(itEnd > it1);
+    EXPECT_TRUE(itEnd > it2);
+    EXPECT_TRUE(itEnd > it3);
+}
+
+TEST_F(Skip_list_iterator, operator_equal)
 {
     auto it1 = obj.begin();
     auto it2 = obj.end();
 
     EXPECT_TRUE(it1 == it2);
+}
+
+TEST_F(Skip_list_iterator, operator_notEqual)
+{
+    auto it1 = obj.begin();
+    auto it2 = obj.end();
+
+    EXPECT_TRUE(it1 != it2);
 }
 
 TEST(Skip_list, empty)
