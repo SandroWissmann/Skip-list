@@ -34,6 +34,22 @@ TEST_F(Skip_list_iterator, operator_asignment)
     EXPECT_EQ(it1->second, it2->second);
 }
 
+TEST_F(Skip_list_iterator, operator_equal)
+{
+    auto it1 = obj.begin();
+    auto it2 = obj.end();
+
+    EXPECT_TRUE(it1 == it2);
+}
+
+TEST_F(Skip_list_iterator, operator_notEqual)
+{
+    auto it1 = obj.begin();
+    auto it2 = obj.end();
+
+    EXPECT_TRUE(it1 != it2);
+}
+
 TEST_F(Skip_list_iterator, operator_bigger)
 {
     auto it1 = obj.begin();
@@ -57,20 +73,44 @@ TEST_F(Skip_list_iterator, operator_bigger)
     EXPECT_TRUE(itEnd > it3);
 }
 
-TEST_F(Skip_list_iterator, operator_equal)
+TEST_F(Skip_list_iterator, operator_plusplus)
 {
     auto it1 = obj.begin();
-    auto it2 = obj.end();
+    auto it2 = ++it1;
 
-    EXPECT_TRUE(it1 == it2);
+    EXPECT_EQ(it1->first, 1);
+    EXPECT_EQ(it2->first, 2);
 }
 
-TEST_F(Skip_list_iterator, operator_notEqual)
+TEST_F(Skip_list_iterator, operator_plus_equal)
 {
     auto it1 = obj.begin();
-    auto it2 = obj.end();
+    it1 += 1;
 
-    EXPECT_TRUE(it1 != it2);
+    EXPECT_EQ(it1->first, 1);
+}
+
+TEST_F(Skip_list_iterator, operator_plus)
+{
+    auto it1 = obj.begin();
+    auto it2 = it1 + 1;
+
+    EXPECT_EQ(it1->first, 1);
+    EXPECT_EQ(it2->first, 2);
+}
+
+TEST_F(Skip_list_iterator, operator_asteriks)
+{
+    auto it1 = obj.begin();
+
+    EXPECT_EQ(*it1, 10);
+}
+
+TEST_F(Skip_list_iterator, operator_arrow)
+{
+    auto it1 = obj.begin();
+
+    EXPECT_EQ(it1->second, 10);
 }
 
 TEST(Skip_list, empty)
