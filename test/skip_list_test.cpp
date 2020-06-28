@@ -113,6 +113,16 @@ TEST_F(Skip_list_iterator, operator_arrow)
     EXPECT_EQ(it1->second, 10);
 }
 
+TEST(Skip_list, copy_constructor)
+{
+    Skip_list<int, int> obj;
+    obj.insert(std::make_pair(1, 10));
+
+    Skip_list<int, int> copy{ obj };
+    EXPECT_EQ(obj[1], 10);
+    EXPECT_EQ(copy[1], 10);
+}
+
 TEST(Skip_list, empty)
 {
     Skip_list<int, int> obj;
