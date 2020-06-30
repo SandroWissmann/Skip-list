@@ -141,6 +141,16 @@ TEST(Skip_list, copy_asignment)
     EXPECT_EQ(obj2.find(2), obj2.end());
 }
 
+TEST(Skip_list, move_constructor)
+{
+    Skip_list<int, int> obj;
+    obj.insert(std::make_pair(1, 10));
+
+    Skip_list<int, int> copy{ std::move(obj) };
+    EXPECT_EQ(obj[1], 10);
+    EXPECT_EQ(copy[1], 10);
+    EXPECT_TRUE(obj.empty());
+}
 
 
 TEST(Skip_list, empty)
