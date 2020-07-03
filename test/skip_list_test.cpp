@@ -169,6 +169,24 @@ TEST(Skip_list, move_asignment)
     EXPECT_EQ(obj2.find(2), obj2.end());
 }
 
+TEST(Skip_list, iterator_begin)
+{
+    Skip_list<int, int> obj;
+    obj.insert(std::make_pair(1, 10));
+
+    auto it = obj.begin();
+    EXPECT_EQ(*it, 1);
+}
+
+TEST(Skip_list, iterator_end)
+{
+    Skip_list<int, int> obj;
+    obj.insert(std::make_pair(1, 10));
+
+    auto it = obj.end();
+    EXPECT_EQ(it, nullptr);
+}
+
 
 TEST(Skip_list, empty)
 {
