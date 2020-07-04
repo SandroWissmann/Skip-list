@@ -112,6 +112,16 @@ public:
             return &curr->value;
         }
 
+        const value_type& operator*() const
+        {
+            return curr->value;
+        }
+
+        const value_type* operator->() const
+        {
+            return &curr->value;
+        }
+
     private:
         node_type* curr;
 
