@@ -234,6 +234,22 @@ TEST(Skip_list, empty)
     EXPECT_FALSE(obj.empty());
 }
 
+TEST(Skip_list, size)
+{
+    Skip_list<int, int> obj;
+
+    EXPECT_EQ(obj.size(), 0);
+
+    obj.insert({std::make_pair(1, 10)});
+
+    EXPECT_EQ(obj.size(), 1);
+
+    obj.insert({std::make_pair(2, 20)});
+
+    EXPECT_EQ(obj.size(), 2);
+}
+
+
 TEST(Skip_list, maxSize)
 {
     Skip_list<int, int> obj;
