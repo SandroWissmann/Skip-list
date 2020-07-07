@@ -257,6 +257,15 @@ TEST(Skip_list, maxSize)
     EXPECT_EQ(obj.max_size(), (std::size_t{} - 1));
 }
 
+TEST(Skip_list, operator_const_access)
+{
+    Skip_list<int, int> obj;
+    obj.insert({std::make_pair(1, 10)});
+
+    const int key = 1;
+    EXPECT_EQ(obj[1], 10);
+}
+
 TEST(Skip_list, insert_and_erase)
 {
     Skip_list<int, int> obj;
