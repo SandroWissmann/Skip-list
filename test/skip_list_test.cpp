@@ -266,6 +266,15 @@ TEST(Skip_list, operator_const_access)
     EXPECT_EQ(obj[1], 10);
 }
 
+TEST(Skip_list, operator_access)
+{
+    Skip_list<int, int> obj;
+    obj.insert({std::make_pair(1, 10)});
+
+    const int key = 1;
+    EXPECT_EQ(obj[1], 10);
+}
+
 TEST(Skip_list, insert_and_erase)
 {
     Skip_list<int, int> obj;
