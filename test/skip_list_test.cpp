@@ -286,6 +286,16 @@ TEST(Skip_list, count)
     EXPECT_EQ(obj.count(1), 1);
 }
 
+TEST(Skip_list, top_level)
+{
+    Skip_list<int, int> obj;
+
+    EXPECT_EQ(obj.top_level(), 0);
+
+    obj.insert({std::make_pair(1, 10)});
+
+    EXPECT_EQ(obj.top_level(), 1);
+}
 
 
 TEST(Skip_list, insert_and_erase)
