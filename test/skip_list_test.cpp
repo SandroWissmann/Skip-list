@@ -275,6 +275,17 @@ TEST(Skip_list, operator_access)
     EXPECT_EQ(obj[1], 10);
 }
 
+TEST(Skip_list, insert)
+{
+    Skip_list<int, int> obj;
+    auto pair = obj.insert({std::make_pair(1, 10)});
+
+    EXPECT_EQ(pair.first->first, 1);
+    EXPECT_EQ(pair.first->first, 10);
+    EXPECT_TRUE(pair.second);
+}
+
+
 TEST(Skip_list, count)
 {
     Skip_list<int, int> obj;
