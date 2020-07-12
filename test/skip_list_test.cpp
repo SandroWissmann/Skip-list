@@ -278,11 +278,22 @@ TEST(Skip_list, operator_access)
 TEST(Skip_list, insert)
 {
     Skip_list<int, int> obj;
-    auto pair = obj.insert({std::make_pair(1, 10)});
+    auto it_and_result = obj.insert({std::make_pair(1, 10)});
 
-    EXPECT_EQ(pair.first->first, 1);
-    EXPECT_EQ(pair.first->first, 10);
-    EXPECT_TRUE(pair.second);
+    EXPECT_EQ(it_and_result.first->first, 1);
+    EXPECT_EQ(it_and_result.first->first, 10);
+    EXPECT_TRUE(it_and_result.second);
+}
+
+TEST(Skip_list, insert_fails)
+{
+    Skip_list<int, int> obj;
+    obj.insert({std::make_pair(1, 10)});
+
+    auto it_and_result = obj.insert({std::make_pair(2, 10)});
+
+    EXPECT_EQ(it_and_result, nullptr);
+    EXPECT_FALSE(it_and_result.second);
 }
 
 
