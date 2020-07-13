@@ -296,6 +296,17 @@ TEST(Skip_list, insert_fails)
     EXPECT_FALSE(it_and_result.second);
 }
 
+TEST(Skip_list, clear)
+{
+    Skip_list<int, int> obj;
+    obj.insert({std::make_pair(1, 10)});
+
+    EXPECT_EQ(obj.size(), 1);
+
+    obj.clear();
+
+    EXPECT_EQ(obj.size(), 0);
+}
 
 TEST(Skip_list, count)
 {
