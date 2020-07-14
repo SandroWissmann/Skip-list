@@ -308,6 +308,16 @@ TEST(Skip_list, clear)
     EXPECT_EQ(obj.size(), 0);
 }
 
+TEST(Skip_list, find_result_end)
+{
+    Skip_list<int, int> obj;
+
+    Skip_list<int, int>::iterator it = obj.find(1);
+
+    EXPECT_EQ(it, obj.end());
+}
+
+
 TEST(Skip_list, count)
 {
     Skip_list<int, int> obj;
