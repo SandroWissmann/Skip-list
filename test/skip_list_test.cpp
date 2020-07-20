@@ -417,6 +417,24 @@ TEST(Skip_list, find_result_find_last)
     EXPECT_EQ(key_value.second, 50);
 }
 
+TEST(Skip_list, const_find_result_find_last)
+{
+    Skip_list<int, int> obj;
+
+    obj.insert({std::make_pair(1, 10)});
+    obj.insert({std::make_pair(2, 20)});
+    obj.insert({std::make_pair(3, 30)});
+    obj.insert({std::make_pair(4, 40)});
+    obj.insert({std::make_pair(5, 50)});
+
+    Skip_list<int, int>::const_iterator it = obj.find(5);
+
+    auto key_value = *it;
+
+    EXPECT_EQ(key_value.first, 5);
+    EXPECT_EQ(key_value.second, 50);
+}
+
 
 
 TEST(Skip_list, count)
