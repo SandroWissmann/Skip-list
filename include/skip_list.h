@@ -58,7 +58,7 @@ public:
             if (curr == nullptr && b.curr != nullptr) {
                 return true;
             }
-            return false // (curr != nullptr && b == nullptr)
+            return false; // (curr != nullptr && b == nullptr)
         }
 
         bool operator<(const iterator_base& b) const
