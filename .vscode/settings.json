@@ -49,6 +49,9 @@
         "hash_map": "cpp",
         "deque": "cpp",
         "forward_list": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "clocale": "cpp",
+        "cstdio": "cpp",
+        "numeric": "cpp"
     }
 }
