@@ -196,14 +196,17 @@ TEST(Skip_list, const_iterator_begin)
     EXPECT_EQ(it->first, 1);
 }
 
-// TEST(Skip_list, const_iterator_end)
-// {
-//     Skip_list<int, int> obj;
-//     obj.insert(std::make_pair(1, 10));
+TEST(Skip_list, const_iterator_end)
+{
+    Skip_list<int, int> obj;
+    obj.insert(std::make_pair(1, 10));
 
-//     const auto it = obj.end();
-//     EXPECT_EQ(it, nullptr);
-// }
+    const auto it = obj.end();
+
+    skip_list::Skip_list<int, int>::iterator it_expected{nullptr};
+
+    EXPECT_EQ(it, it_expected);
+}
 
 TEST(Skip_list, const_iterator_cbegin)
 {
