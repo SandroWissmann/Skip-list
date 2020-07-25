@@ -217,14 +217,17 @@ TEST(Skip_list, const_iterator_cbegin)
     EXPECT_EQ(it->first, 1);
 }
 
-// TEST(Skip_list, const_iterator_cend)
-// {
-//     Skip_list<int, int> obj;
-//     obj.insert(std::make_pair(1, 10));
+TEST(Skip_list, const_iterator_cend)
+{
+    Skip_list<int, int> obj;
+    obj.insert(std::make_pair(1, 10));
 
-//     auto it = obj.cend();
-//     EXPECT_EQ(it, nullptr);
-// }
+    auto it = obj.cend();
+
+    skip_list::Skip_list<int, int>::const_iterator 
+        it_expected{nullptr};
+    EXPECT_EQ(it, it_expected);
+}
 
 TEST(Skip_list, empty)
 {
