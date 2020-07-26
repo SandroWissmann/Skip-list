@@ -289,15 +289,15 @@ TEST(Skip_list, operator_access_const)
     EXPECT_EQ(obj[key], 20);
 }
 
-// TEST(Skip_list, insert)
-// {
-//     Skip_list<int, int> obj;
-//     auto it_and_result = obj.insert({std::make_pair(1, 10)});
+TEST(Skip_list, insert)
+{
+    Skip_list<int, int> obj;
+    auto it_and_result = obj.insert({std::make_pair(1, 10)});
 
-//     EXPECT_EQ(it_and_result.first->first, 1);
-//     EXPECT_EQ(it_and_result.first->first, 10);
-//     EXPECT_TRUE(it_and_result.second);
-// }
+    EXPECT_EQ(it_and_result.first->first, 1);
+    EXPECT_EQ(it_and_result.first->first, 10);
+    EXPECT_TRUE(it_and_result.second);
+}
 
 // TEST(Skip_list, insert_fails)
 // {
