@@ -299,16 +299,15 @@ TEST(Skip_list, insert)
     EXPECT_TRUE(it_and_result.second);
 }
 
-// TEST(Skip_list, insert_fails)
-// {
-//     Skip_list<int, int> obj;
-//     obj.insert({std::make_pair(1, 10)});
+TEST(Skip_list, insert_fails)
+{
+    Skip_list<int, int> obj;
+    obj.insert({std::make_pair(1, 10)});
 
-//     auto it_and_result = obj.insert({std::make_pair(2, 10)});
+    auto it_and_result = obj.insert({std::make_pair(2, 10)});
 
-//     EXPECT_EQ(it_and_result, nullptr);
-//     EXPECT_FALSE(it_and_result.second);
-// }
+    EXPECT_EQ(it_and_result, nullptr);
+}
 
 TEST(Skip_list, clear)
 {
