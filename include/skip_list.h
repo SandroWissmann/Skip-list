@@ -1,8 +1,9 @@
 #ifndef SKIP_LIST_GUARD_170720181942
 #define SKIP_LIST_GUARD_170720181942
 
-#include <map>    // std::pair
+
 #include <random> // generation of the levels
+#include <utility>    // std::pair
 #include <vector> // for head implementation
 
 namespace skip_list {
