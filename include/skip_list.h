@@ -1,8 +1,12 @@
 #ifndef SKIP_LIST_GUARD_170720181942
 #define SKIP_LIST_GUARD_170720181942
 
-
+#include <algorithm>  // std::foreach
+#include <cstdlib> // aligned_alloc() and free()
+#include <iterator> // begin() and end()
+#include <ostream>  // std::ostream
 #include <random> // generation of the levels
+#include <type_traits> // conditional
 #include <utility>    // std::pair
 #include <vector> // for head implementation
 
