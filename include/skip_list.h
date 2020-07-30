@@ -1,5 +1,5 @@
-#ifndef SKIP_LIST_GUARD_170720181942
-#define SKIP_LIST_GUARD_170720181942
+#ifndef SKIP_LIST_H
+#define SKIP_LIST_H
 
 #include <algorithm>  // std::foreach
 #include <cstdlib> // aligned_alloc() and free()
