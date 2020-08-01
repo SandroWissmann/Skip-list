@@ -2,6 +2,7 @@
 #define SKIP_LIST_H
 
 #include <algorithm>  // std::foreach
+#include <cassert>
 #include <cstdlib> // aligned_alloc() and free()
 #include <iterator> // begin() and end()
 #include <ostream>  // std::ostream
@@ -83,9 +84,8 @@ public:
 
         iterator_base& operator++()
         {
-            if (curr == nullptr) {
-                return *this;
-            }
+            assert(curr == nullptr);
+            
             curr = curr->next[0];
             return *this;
         }
