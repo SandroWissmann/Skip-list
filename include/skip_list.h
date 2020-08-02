@@ -28,12 +28,12 @@ public:
     using value_type = std::pair<const key_type, mapped_type>;
     using size_type = std::size_t;
 
-    template <typename IT, bool is_const> class iterator_base {
+    template <typename it_value_type, bool is_const> class iterator_base {
     public:
         using node_type = typename std::conditional<is_const, Skip_node const,
                                                     Skip_node>::type;
         using value_type =
-            typename std::conditional<is_const, IT const, IT>::type;
+            typename std::conditional<is_const, it_value_type const, it_value_type>::type;
 
         iterator_base() : curr{nullptr} {};
 
