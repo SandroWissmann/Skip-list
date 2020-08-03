@@ -37,7 +37,7 @@ TEST_F(Skip_list_iterator, operator_asignment)
 TEST_F(Skip_list_iterator, operator_equal)
 {
     auto it1 = obj.begin();
-    auto it2 = obj.end();
+    auto it2 = obj.begin();
 
     EXPECT_TRUE(it1 == it2);
 }
