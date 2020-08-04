@@ -84,7 +84,7 @@ public:
 
         iterator_base& operator++()
         {
-            assert(curr == nullptr);
+            assert(curr != nullptr);
             
             curr = curr->next[0];
             return *this;
