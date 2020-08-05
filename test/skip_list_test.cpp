@@ -29,7 +29,7 @@ TEST_F(Skip_list_iterator, operator_asignment)
     auto it1 = obj.begin();
     auto it2 = it1;
 
-    EXPECT_EQ(it1 , it2);
+    EXPECT_EQ(it1, it2);
     EXPECT_EQ(it1->first, it2->first);
     EXPECT_EQ(it1->second, it2->second);
 }
@@ -103,7 +103,7 @@ TEST_F(Skip_list_iterator, operator_asteriks)
 {
     auto it1 = obj.begin();
 
-    EXPECT_EQ((*it1).first, 10);
+    EXPECT_EQ((*it1).first, 1);
 }
 
 TEST_F(Skip_list_iterator, operator_arrow)
@@ -118,7 +118,7 @@ TEST(Skip_list, copy_constructor)
     Skip_list<int, int> obj;
     obj.insert(std::make_pair(1, 10));
 
-    Skip_list<int, int> copy{ obj };
+    Skip_list<int, int> copy{obj};
     EXPECT_EQ(obj[1], 10);
     EXPECT_EQ(copy[1], 10);
 }
@@ -146,7 +146,7 @@ TEST(Skip_list, move_constructor)
     Skip_list<int, int> obj;
     obj.insert(std::make_pair(1, 10));
 
-    Skip_list<int, int> copy{ std::move(obj) };
+    Skip_list<int, int> copy{std::move(obj)};
     EXPECT_EQ(obj[1], 10);
     EXPECT_EQ(copy[1], 10);
     EXPECT_TRUE(obj.empty());
@@ -224,7 +224,7 @@ TEST(Skip_list, const_iterator_cbegin)
 
 //     auto it = obj.cend();
 
-//     skip_list::Skip_list<int, int>::const_iterator 
+//     skip_list::Skip_list<int, int>::const_iterator
 //         it_expected{nullptr};
 //     EXPECT_EQ(it, it_expected);
 // }
@@ -254,7 +254,6 @@ TEST(Skip_list, size)
 
     EXPECT_EQ(obj.size(), 2);
 }
-
 
 TEST(Skip_list, maxSize)
 {
@@ -411,7 +410,6 @@ TEST(Skip_list, find_result_find_middle)
 // //     EXPECT_EQ(key_value.second, 30);
 // // }
 
-
 TEST(Skip_list, find_result_find_last)
 {
     Skip_list<int, int> obj;
@@ -448,8 +446,6 @@ TEST(Skip_list, find_result_find_last)
 // //     EXPECT_EQ(key_value.second, 50);
 // // }
 
-
-
 TEST(Skip_list, count)
 {
     Skip_list<int, int> obj;
@@ -471,7 +467,6 @@ TEST(Skip_list, top_level)
 
     EXPECT_EQ(obj.top_level(), 1);
 }
-
 
 TEST(Skip_list, insert_and_erase)
 {
