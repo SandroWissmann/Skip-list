@@ -76,7 +76,8 @@ TEST_F(Skip_list_iterator, operator_bigger)
 TEST_F(Skip_list_iterator, operator_plusplus)
 {
     auto it1 = obj.begin();
-    auto it2 = ++it1;
+    auto it2 = it1;
+    ++it2;
 
     EXPECT_EQ(it1->first, 1);
     EXPECT_EQ(it2->first, 2);
