@@ -1,15 +1,15 @@
 #ifndef SKIP_LIST_H
 #define SKIP_LIST_H
 
-#include <algorithm>  // std::foreach
+#include <algorithm> // std::foreach
 #include <cassert>
-#include <cstdlib> // aligned_alloc() and free()
-#include <iterator> // begin() and end()
-#include <ostream>  // std::ostream
-#include <random> // generation of the levels
+#include <cstdlib>     // aligned_alloc() and free()
+#include <iterator>    // begin() and end()
+#include <ostream>     // std::ostream
+#include <random>      // generation of the levels
 #include <type_traits> // conditional
-#include <utility>    // std::pair
-#include <vector> // for head implementation
+#include <utility>     // std::pair
+#include <vector>      // for head implementation
 
 namespace skip_list {
 
@@ -33,13 +33,14 @@ public:
         using node_type = typename std::conditional<is_const, Skip_node const,
                                                     Skip_node>::type;
         using value_type =
-            typename std::conditional<is_const, it_value_type const, it_value_type>::type;
+            typename std::conditional<is_const, it_value_type const,
+                                      it_value_type>::type;
 
         iterator_base() : curr{nullptr} {};
 
         explicit iterator_base(node_type* pos) : curr{pos} {};
 
-        iterator_base& operator=(const iterator_base& other) 
+        iterator_base& operator=(const iterator_base& other)
         {
             curr = other.curr;
             return *this;
@@ -85,7 +86,7 @@ public:
         iterator_base& operator++()
         {
             assert(curr != nullptr);
-            
+
             curr = curr->next[0];
             return *this;
         }
@@ -95,8 +96,9 @@ public:
             if (offset <= 0) {
                 return *this;
             }
+
             for (int i = 0; i < offset; ++i) {
-                ++*this;
+                ++this;
             }
             return *this;
         }
