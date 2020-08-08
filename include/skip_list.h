@@ -98,7 +98,7 @@ public:
             }
 
             for (int i = 0; i < offset; ++i) {
-                ++this;
+                ++(*this);
             }
             return *this;
         }
