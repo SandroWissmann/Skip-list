@@ -88,7 +88,7 @@ TEST_F(Skip_list_iterator, operator_plus_equal)
     auto it1 = obj.begin();
     it1 += 1;
 
-    EXPECT_EQ(it1->first, 1);
+    EXPECT_EQ(it1->first, 2);
 }
 
 TEST_F(Skip_list_iterator, operator_plus)
