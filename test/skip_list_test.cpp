@@ -53,8 +53,8 @@ TEST_F(Skip_list_iterator, operator_notEqual)
 TEST_F(Skip_list_iterator, operator_bigger)
 {
     auto it1 = obj.begin();
-    auto it2 = ++it1;
-    auto it3 = ++it2;
+    auto it2 = it1 + 1;
+    auto it3 = it2 + 1;
 
     EXPECT_FALSE(it1 > it1);
     EXPECT_FALSE(it1 > it2);
