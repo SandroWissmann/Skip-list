@@ -293,7 +293,7 @@ TEST(Skip_list, insert)
     auto it_and_result = obj.insert({std::make_pair(1, 10)});
 
     EXPECT_EQ(it_and_result.first->first, 1);
-    EXPECT_EQ(it_and_result.first->first, 10);
+    EXPECT_EQ(it_and_result.first->second, 10);
     EXPECT_TRUE(it_and_result.second);
 }
 
