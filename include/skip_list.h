@@ -28,13 +28,11 @@ public:
     using value_type = std::pair<const key_type, mapped_type>;
     using size_type = std::size_t;
 
-    template <typename it_value_type, bool is_const> class iterator_base {
+    template <typename it_value_type> class iterator_base {
     public:
-        using node_type = typename std::conditional<is_const, Skip_node const,
-                                                    Skip_node>::type;
-        using value_type =
-            typename std::conditional<is_const, it_value_type const,
-                                      it_value_type>::type;
+        using value_type = it_value_type;
+        using node_type = std::conditional_t<std::is_const_v<value_type>,
+            const Skip_node, Skip_node>;
 
         iterator_base() : curr{nullptr} {};
 
@@ -135,8 +133,8 @@ public:
         friend class Skip_list; // to access curr in skiplist functions
     };
 
-    using iterator = iterator_base<value_type, false>;
-    using const_iterator = iterator_base<value_type const, true>;
+    using iterator = iterator_base<value_type>;
+    using const_iterator = iterator_base<const value_type>;
 
     Skip_list() = default;
 
@@ -446,23 +444,9 @@ typename Skip_list<Key, T>::iterator
 Skip_list<Key, T>::find(const key_type& key)
 // same as const_iterator function, is there a way to not have this redundant?
 {
-    auto level = head.size();
-    auto next = head.data();
-
-    while (level > 0) {
-        const auto index = level - 1;
-
-        if (!next[index] || next[index]->value.first > key) {
-            --level;
-        }
-        else if (next[index]->value.first == key) {
-            return iterator{next[index]};
-        }
-        else {
-            next = next[index]->next;
-        }
-    }
-    return end();
+    auto const_it = std::as_const(*this).find(key);
+    auto curr = const_cast<typename iterator::node_type*>(const_it.curr);
+    return iterator{curr};
 }
 
 template <typename Key, typename T>
