@@ -34,7 +34,7 @@ public:
         using node_type = std::conditional_t<std::is_const_v<value_type>,
                                              const Skip_node, Skip_node>;
 
-        iterator_base() : curr{nullptr} {};
+        iterator_base() = default;
 
         explicit iterator_base(node_type* pos) : curr{pos} {};
 
@@ -128,7 +128,7 @@ public:
         }
 
     private:
-        node_type* curr;
+        node_type* curr = nullptr;
 
         friend class Skip_list; // to access curr in skiplist functions
     };
