@@ -36,25 +36,26 @@ public:
 
         iterator_base() = default;
 
-        explicit iterator_base(node_type* pos) : curr{pos} {};
+        explicit constexpr iterator_base(node_type* pos) noexcept
+            : curr{pos} {};
 
-        iterator_base& operator=(const iterator_base& other)
+        constexpr iterator_base& operator=(const iterator_base& other) noexcept
         {
             curr = other.curr;
             return *this;
         }
 
         // the order is determinde by the key so compare by it
-        bool operator==(const iterator_base& b) const
+        constexpr bool operator==(const iterator_base& b) const noexcept
         {
             return curr == b.curr;
         }
-        bool operator!=(const iterator_base& b) const
+        constexpr bool operator!=(const iterator_base& b) const noexcept
         {
             return curr != b.curr;
         }
 
-        bool operator>(const iterator_base& b) const
+        constexpr bool operator>(const iterator_base& b) const noexcept
         {
             ////assume nullptr is the biggest element
             if (curr != nullptr && b.curr != nullptr) {
@@ -66,22 +67,22 @@ public:
             return false; // (curr != nullptr && b == nullptr)
         }
 
-        bool operator<(const iterator_base& b) const
+        constexpr bool operator<(const iterator_base& b) const noexcept
         {
             return (!(curr < b.curr) && (curr != b.curr));
         }
 
-        bool operator>=(const iterator_base& b) const
+        constexpr bool operator>=(const iterator_base& b) const noexcept
         {
             return ((curr == b.curr) || (b.curr > curr));
         }
 
-        bool operator<=(const iterator_base& b) const
+        constexpr bool operator<=(const iterator_base& b) const noexcept
         {
             return ((curr == b.curr) || (b.curr < curr));
         }
 
-        iterator_base& operator++()
+        iterator_base& operator++() noexcept
         {
             assert(curr != nullptr);
 
@@ -89,7 +90,7 @@ public:
             return *this;
         }
 
-        iterator_base& operator+=(const int offset)
+        constexpr iterator_base& operator+=(const int offset) noexcept
         {
             if (offset <= 0) {
                 return *this;
@@ -101,28 +102,28 @@ public:
             return *this;
         }
 
-        iterator_base operator+(const int offset)
+        constexpr iterator_base operator+(const int offset) noexcept
         {
             iterator_base it = *this;
             it += offset;
             return it;
         }
 
-        value_type& operator*()
+        constexpr value_type& operator*() noexcept
         {
             return curr->value;
         }
-        value_type* operator->()
+        constexpr value_type* operator->() noexcept
         {
             return &curr->value;
         }
 
-        const value_type& operator*() const
+        constexpr const value_type& operator*() const noexcept
         {
             return curr->value;
         }
 
-        const value_type* operator->() const
+        constexpr const value_type* operator->() const noexcept
         {
             return &curr->value;
         }
