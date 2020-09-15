@@ -39,12 +39,6 @@ public:
         explicit constexpr iterator_base(node_type* pos) noexcept
             : curr{pos} {};
 
-        constexpr iterator_base& operator=(const iterator_base& other) noexcept
-        {
-            curr = other.curr;
-            return *this;
-        }
-
         // the order is determinde by the key so compare by it
         constexpr bool operator==(const iterator_base& b) const noexcept
         {
