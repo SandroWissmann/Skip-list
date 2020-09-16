@@ -31,6 +31,9 @@ public:
     template <typename it_value_type> class iterator_base {
     public:
         using value_type = it_value_type;
+        using difference_type = std::ptrdiff_t;
+        using pointer = value_type*;
+        using reference = value_type&;
         using node_type = std::conditional_t<std::is_const_v<value_type>,
                                              const Skip_node, Skip_node>;
 
