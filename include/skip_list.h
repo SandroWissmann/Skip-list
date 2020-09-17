@@ -34,6 +34,7 @@ public:
         using difference_type = std::ptrdiff_t;
         using pointer = value_type*;
         using reference = value_type&;
+        using iterator_category = std::forward_iterator_tag;
         using node_type = std::conditional_t<std::is_const_v<value_type>,
                                              const Skip_node, Skip_node>;
 
@@ -50,33 +51,6 @@ public:
         constexpr bool operator!=(const iterator_base& b) const noexcept
         {
             return curr != b.curr;
-        }
-
-        constexpr bool operator>(const iterator_base& b) const noexcept
-        {
-            ////assume nullptr is the biggest element
-            if (curr != nullptr && b.curr != nullptr) {
-                return curr->value.first > b.curr->value.first;
-            }
-            if (curr == nullptr && b.curr != nullptr) {
-                return true;
-            }
-            return false; // (curr != nullptr && b == nullptr)
-        }
-
-        constexpr bool operator<(const iterator_base& b) const noexcept
-        {
-            return (!(curr < b.curr) && (curr != b.curr));
-        }
-
-        constexpr bool operator>=(const iterator_base& b) const noexcept
-        {
-            return ((curr == b.curr) || (b.curr > curr));
-        }
-
-        constexpr bool operator<=(const iterator_base& b) const noexcept
-        {
-            return ((curr == b.curr) || (b.curr < curr));
         }
 
         iterator_base& operator++() noexcept
