@@ -40,9 +40,6 @@ public:
 
         iterator_base() = default;
 
-        explicit constexpr iterator_base(node_type* pos) noexcept
-            : curr{pos} {};
-
         // the order is determinde by the key so compare by it
         constexpr bool operator==(const iterator_base& b) const noexcept
         {
@@ -100,6 +97,9 @@ public:
         }
 
     private:
+        explicit constexpr iterator_base(node_type* pos) noexcept
+            : curr{pos} {};
+
         node_type* curr = nullptr;
 
         friend class Skip_list; // to access curr in skiplist functions
