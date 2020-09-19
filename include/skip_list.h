@@ -58,6 +58,14 @@ public:
             return *this;
         }
 
+        iterator_base& operator++(int) noexcept
+        {
+            assert(curr != nullptr);
+
+            auto temp = *this;
+            ++(*this) return temp;
+        }
+
         constexpr iterator_base& operator+=(const int offset) noexcept
         {
             if (offset <= 0) {
