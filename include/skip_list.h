@@ -63,7 +63,8 @@ public:
             assert(curr != nullptr);
 
             auto temp = *this;
-            ++(*this) return temp;
+            ++(*this);
+            return temp;
         }
 
         constexpr iterator_base& operator+=(const int offset) noexcept
