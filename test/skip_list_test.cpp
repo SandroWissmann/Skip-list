@@ -60,6 +60,16 @@ TEST_F(Skip_list_iterator, operator_plusplus)
     EXPECT_EQ(it2->first, 2);
 }
 
+TEST_F(Skip_list_iterator, operator_plusplus_postincrement)
+{
+    auto it1 = obj.begin();
+    auto it2 = it1;
+    it2++;
+
+    EXPECT_EQ(it1->first, 1);
+    EXPECT_EQ(it2->first, 2);
+}
+
 TEST_F(Skip_list_iterator, operator_plus_equal)
 {
     auto it1 = obj.begin();
