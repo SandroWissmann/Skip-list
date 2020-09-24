@@ -119,7 +119,7 @@ public:
 
     Skip_list() = default;
 
-    ~Skip_list() noexcept
+    ~Skip_list()
     {
         free_all_nodes(head[0]);
     }
