@@ -137,20 +137,10 @@ public:
 
     Skip_list& operator=(const Skip_list& other)
     {
-        // keep backup to provide better exception guarantee
-        auto backup = std::move(head);
+        using std::swap;
 
-        try {
-            copy_nodes(other);
-        }
-        catch (...) {
-            free_all_nodes(head[0]);
-            head = std::move(backup);
-            throw;
-        }
-
-        free_all_nodes(backup[0]);
-
+        auto temp = other;
+        swap(temp, *this);
         return *this;
     }
 
