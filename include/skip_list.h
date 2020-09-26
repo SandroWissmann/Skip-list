@@ -144,19 +144,22 @@ public:
         return *this;
     }
 
-    Skip_list(Skip_list&& other) noexcept : head{std::move(other.head)}
+    friend void swap(Skip_list& a, Skip_list& b) noexcept
     {
-        other.head.assign(1, nullptr);
+        using std::swap;
+        swap(a.head, b.head);
+    }
+
+    Skip_list(Skip_list&& other) noexcept : Skip_list{}
+    {
+        using std::swap;
+        swap(*this, other);
     }
 
     Skip_list& operator=(Skip_list&& other) noexcept
     {
-        if (this != &other) {
-            free_all_nodes(head[0]);
-            head = std::move(other.head);
-            other.head.assign(1, nullptr);
-        }
-
+        using std::swap;
+        swap(*this, other);
         return *this;
     }
 
