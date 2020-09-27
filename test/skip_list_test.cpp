@@ -151,7 +151,6 @@ TEST(Skip_list, move_asignment)
 
     obj2 = std::move(obj1);
 
-    EXPECT_TRUE(obj1.empty());
     EXPECT_EQ(obj2.find(2), obj2.end());
 }
 
