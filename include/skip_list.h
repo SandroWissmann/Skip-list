@@ -211,7 +211,7 @@ public:
 
     size_type max_size() const noexcept
     {
-        return size_type{static_cast<size_type>(-1)};
+        return std::numeric_limits<size_type>::max();
     }
 
     mapped_type& operator[](const key_type& key)
