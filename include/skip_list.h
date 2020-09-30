@@ -510,7 +510,7 @@ Skip_list<Key, T>::allocate_node(value_type value, size_type levels)
 #else
     const auto node = std::aligned_alloc(alignof(Skip_node), node_size);
 #endif
-    new (node) Skip_node{value, levels, nullptr};
+    new (node) Skip_node{std::move(value), levels, nullptr};
 
     return reinterpret_cast<Skip_node*>(node);
 }
