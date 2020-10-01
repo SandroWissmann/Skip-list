@@ -226,15 +226,15 @@ public:
     std::pair<iterator, bool> insert(const value_type& value);
 
     // todo:
-    std::pair<iterator, bool> insert(value_type&& value);
+    // std::pair<iterator, bool> insert(value_type&& value);
 
     size_type erase(const key_type& key);
 
     // todo:
-    iterator erase(const_iterator const_iterator);
+    // iterator erase(const_iterator const_iterator);
 
     // todo:
-    iterator erase(iterator iterator);
+    // iterator erase(iterator iterator);
 
     void clear() noexcept
     {
