@@ -6,6 +6,64 @@
 
 using namespace skip_list;
 
+template <typename T> class Skip_list_types_test : public ::testing::Test {
+};
+
+TYPED_TEST_SUITE_P(Skip_list_types_test);
+
+TYPED_TEST_P(Skip_list_types_test, key_type_is_correct)
+{
+    using K = std::tuple_element_t<0, TypeParam>;
+    using V = std::tuple_element_t<1, TypeParam>;
+    using expected = std::tuple_element_t<2, TypeParam>;
+
+    EXPECT_TRUE((std::is_same_v<typename Skip_list<K, V>::key_type, expected>));
+}
+
+TYPED_TEST_P(Skip_list_types_test, mapped_type_is_correct)
+{
+    using K = std::tuple_element_t<0, TypeParam>;
+    using V = std::tuple_element_t<1, TypeParam>;
+    using expected = std::tuple_element_t<3, TypeParam>;
+
+    EXPECT_TRUE(
+        (std::is_same_v<typename Skip_list<K, V>::mapped_type, expected>));
+}
+
+TYPED_TEST_P(Skip_list_types_test, value_type_is_correct)
+{
+    using K = std::tuple_element_t<0, TypeParam>;
+    using V = std::tuple_element_t<1, TypeParam>;
+    using expected = std::tuple_element_t<4, TypeParam>;
+
+    EXPECT_TRUE(
+        (std::is_same_v<typename Skip_list<K, V>::value_type, expected>));
+}
+
+TYPED_TEST_P(Skip_list_types_test, size_type_is_correct)
+{
+    using K = std::tuple_element_t<0, TypeParam>;
+    using V = std::tuple_element_t<1, TypeParam>;
+
+    EXPECT_TRUE((std::is_integral_v<typename Skip_list<K, V>::size_type>));
+    EXPECT_TRUE((std::is_unsigned_v<typename Skip_list<K, V>::size_type>));
+}
+
+REGISTER_TYPED_TEST_SUITE_P(Skip_list_types_test, key_type_is_correct,
+                            mapped_type_is_correct, value_type_is_correct,
+                            size_type_is_correct);
+
+using skip_list_types_test_types = ::testing::Types<
+    //          K            V           key_type     mapped_type  value_type
+    std::tuple<int, int, int, int, std::pair<int const, int>>,
+    std::tuple<std::string, int, std::string, int,
+               std::pair<std::string const, int>>,
+    std::tuple<int, std::string, int, std::string,
+               std::pair<int const, std::string>>>;
+
+INSTANTIATE_TYPED_TEST_SUITE_P(Type_test, Skip_list_types_test,
+                               skip_list_types_test_types);
+
 class Skip_list_iterator : public ::testing::Test {
 protected:
     virtual void SetUp()
