@@ -28,6 +28,7 @@ public:
     using value_type = std::pair<const key_type, mapped_type>;
     using size_type = std::size_t;
 
+public:
     template <typename it_value_type> class iterator_base {
     public:
         using value_type = it_value_type;
@@ -273,6 +274,23 @@ private:
 
     void copy_nodes(const Skip_list& other);
     static void free_all_nodes(Skip_node* head) noexcept;
+
+    class Skip_node_deleter {
+    public:
+        explicit Skip_node_deleter(Skip_list& owner) noexcept : m_owner{&owner}
+        {
+        }
+
+        void operator()(Skip_node* p) const noexcept
+        {
+            if (p) {
+                m_owner->free_node(p);
+            }
+        }
+
+    private:
+        Skip_list& m_owner;
+    };
 };
 
 template <typename Key, typename T>
