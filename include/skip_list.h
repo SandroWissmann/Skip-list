@@ -522,12 +522,8 @@ Skip_list<Key, T>::allocate_node(value_type value, size_type levels)
 {
     const auto node_size =
         sizeof(Skip_node) + (levels - 1) * sizeof(Skip_node*);
-#ifdef _MSC_VER // Visual Studio doesnt support  aligned alloc yet ( new in C++
-                // 17)
-    const auto node = _aligned_malloc(node_size, alignof(Skip_node));
-#else
+
     const auto node = std::aligned_alloc(alignof(Skip_node), node_size);
-#endif
     new (node) Skip_node{std::move(value), levels, nullptr};
 
     return reinterpret_cast<Skip_node*>(node);
@@ -537,12 +533,7 @@ template <typename Key, typename T>
 void Skip_list<Key, T>::free_node(Skip_node* node)
 {
     node->~Skip_node();
-
-#ifdef _MSC_VER
-    _aligned_free(node);
-#else
     std::free(node);
-#endif
 }
 
 template <typename Key, typename T>
