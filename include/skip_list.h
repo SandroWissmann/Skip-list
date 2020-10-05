@@ -5,6 +5,7 @@
 #include <cassert>
 #include <cstdlib>     // aligned_alloc() and free()
 #include <iterator>    // begin() and end()
+#include <memory>      // for unique ptr
 #include <ostream>     // std::ostream
 #include <random>      // generation of the levels
 #include <type_traits> // conditional
@@ -17,6 +18,7 @@ template <typename Key, typename T> class Skip_list {
 private:
     // forward declaration because iterator class needs to know about the node
     struct Skip_node;
+    class Skip_node_deleter;
     // element before first element containg pointers to all the first elements
     // of each level
     std::vector<Skip_node*> head = std::vector<Skip_node*>(1, nullptr);
@@ -269,7 +271,8 @@ private:
         Skip_node* next[1];
     };
 
-    static Skip_node* allocate_node(value_type value, size_type levels);
+    static std::unique_ptr<Skip_node*, Skip_node_deleter>
+    allocate_node(value_type value, size_type levels);
     static void free_node(Skip_node* node);
 
     void copy_nodes(const Skip_list& other);
@@ -517,16 +520,18 @@ bool Skip_list<Key, T>::next_level() noexcept
 }
 
 template <typename Key, typename T>
-typename Skip_list<Key, T>::Skip_node*
+std::unique_ptr<typename Skip_list<Key, T>::Skip_node*,
+                typename Skip_list<Key, T>::Skip_node_deleter>
 Skip_list<Key, T>::allocate_node(value_type value, size_type levels)
 {
     const auto node_size =
         sizeof(Skip_node) + (levels - 1) * sizeof(Skip_node*);
 
-    const auto node = std::aligned_alloc(alignof(Skip_node), node_size);
-    new (node) Skip_node{std::move(value), levels, nullptr};
+    auto node = std::make_unique<std::byte[]>(node_size);
 
-    return reinterpret_cast<Skip_node*>(node);
+    new (node.get()) Skip_node(value, levels, nullptr);
+
+    return (reinterpret_cast<Skip_node*>(node.release()));
 }
 
 template <typename Key, typename T>
