@@ -310,8 +310,8 @@ Skip_list<Key, T>::insert(const value_type& value)
     const auto insert_node = allocate_node(value, insert_level);
     Skip_list::Skip_node* old_node = nullptr;
 
-    while (head.size() < insert_level) {
-        head.push_back(nullptr);
+    if (head.size() < insert_level) {
+        head.insert(insert_level, nullptr);
     }
 
     auto level = head.size();
