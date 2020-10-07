@@ -280,19 +280,15 @@ private:
 
     class Skip_node_deleter {
     public:
-        explicit Skip_node_deleter(Skip_list& owner) noexcept : m_owner{&owner}
-        {
-        }
-
         void operator()(Skip_node* p) const noexcept
         {
             if (p) {
-                m_owner->free_node(p);
+                p->Skip_node();
+
+                auto raw_p = reinterpret_cast<std::byte*>(p);
+                delete[] raw_p;
             }
         }
-
-    private:
-        Skip_list& m_owner;
     };
 };
 
@@ -529,9 +525,9 @@ Skip_list<Key, T>::allocate_node(value_type value, size_type levels)
 
     auto node = std::make_unique<std::byte[]>(node_size);
 
-    new (node.get()) Skip_node(value, levels, nullptr);
+    new (node.get()) Skip_node{value, levels, nullptr};
 
-    return (reinterpret_cast<Skip_node*>(node.release()));
+    return {reinterpret_cast<Skip_node*>(node.release())};
 }
 
 template <typename Key, typename T>
