@@ -303,11 +303,10 @@ Skip_list<Key, T>::insert(const value_type& value)
 // false
 {
     const auto insert_level = generate_level(); // top level of new node
-    const auto insert_node = allocate_node(value, insert_level);
-    Skip_list::Skip_node* old_node = nullptr;
+    auto insert_node = allocate_node(value, insert_level);
 
     if (head.size() < insert_level) {
-        head.insert(insert_level, nullptr);
+        head.resize(insert_level, nullptr);
     }
 
     auto level = head.size();
@@ -316,56 +315,52 @@ Skip_list<Key, T>::insert(const value_type& value)
     Skip_list::iterator insert_pos;
     bool added = false;
 
-    while (level > 0) {
-        const auto index = level - 1;
-        auto node = next[index];
+    // while (level > 0) {
+    //     const auto index = level - 1;
+    //     auto node = next[index];
 
-        if (node == nullptr ||
-            node->value.first > value.first) { // compare by key
+    //     if (node == nullptr ||
+    //         node->value.first > value.first) { // compare by key
 
-            if (level <= insert_level) {
+    //         if (level <= insert_level) {
 
-                insert_node->next[index] = next[index];
-                next[index] = insert_node;
+    //             insert_node->next[index] = next[index];
+    //             next[index] = insert_node.release();
 
-                if (!added) {
-                    insert_pos = Skip_list::iterator{next[index]};
-                    added = true;
-                }
-            }
-            --level;
-        }
-        else if (node->value.first == value.first) {
-            // key already present, keep node with more levels
-            //  -> no need to insert new node into list if not needed
-            //  -> if insert_node->levels > node->levels, we already modified
-            //  the list
-            //     so continuing and removing the other node seems like the
-            //     easier option (compared to retracing where links to
-            //     insert_node have been made)
+    //             if (!added) {
+    //                 insert_pos = Skip_list::iterator{next[index]};
+    //                 added = true;
+    //             }
+    //         }
+    //         --level;
+    //     }
+    //     else if (node->value.first == value.first) {
+    //         // key already present, keep node with more levels
+    //         //  -> no need to insert new node into list if not needed
+    //         //  -> if insert_node->levels > node->levels, we already modified
+    //         //  the list
+    //         //     so continuing and removing the other node seems like the
+    //         //     easier option (compared to retracing where links to
+    //         //     insert_node have been made)
 
-            if (node->levels >= insert_level) {
-                node->value.second = value.second;
-                free_node(insert_node);
+    //         if (node->levels >= insert_level) {
+    //             node->value.second = value.second;
 
-                return std::make_pair(Skip_list::iterator{node}, true);
-            }
+    //             return std::make_pair(Skip_list::iterator{node}, true);
+    //         }
 
-            old_node = node;
-
-            insert_node->next[index] = node->next[index];
-            next[index] = insert_node;
-            --level;
-        }
-        else {
-            next = node->next;
-        }
-    }
-
-    if (old_node != nullptr) {
-        free_node(old_node);
-    }
-
+    //         // store the old node in a unique ptr to be cleaned up
+    //         const auto old_node = std::unique_ptr<Skip_node,
+    //         Skip_node_deleter>{
+    //             node, Skip_node_deleter{*this}};
+    //         insert_node->next[index] = node->next[index];
+    //         next[index] = insert_node.release();
+    //         --level;
+    //     }
+    //     else {
+    //         next = node->next;
+    //     }
+    // }
     return std::make_pair(insert_pos, added);
 }
 
