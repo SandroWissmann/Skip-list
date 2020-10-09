@@ -262,21 +262,11 @@ public:
         std::ostream& os) const; // show all the levels for debug only. can this
                                  // be put into skiplist_unit_tests ?
 private:
-    size_type generate_level() const;
-    static bool next_level() noexcept;
-
     struct Skip_node {
         value_type value; // key / T
         size_type levels;
         Skip_node* next[1];
     };
-
-    static std::unique_ptr<Skip_node*, Skip_node_deleter>
-    allocate_node(value_type value, size_type levels);
-    static void free_node(Skip_node* node);
-
-    void copy_nodes(const Skip_list& other);
-    static void free_all_nodes(Skip_node* head) noexcept;
 
     class Skip_node_deleter {
     public:
@@ -290,6 +280,16 @@ private:
             }
         }
     };
+
+    size_type generate_level() const;
+    static bool next_level() noexcept;
+
+    static std::unique_ptr<Skip_node*, Skip_node_deleter>
+    allocate_node(value_type value, size_type levels);
+    static void free_node(Skip_node* node);
+
+    void copy_nodes(const Skip_list& other);
+    static void free_all_nodes(Skip_node* head) noexcept;
 };
 
 template <typename Key, typename T>
