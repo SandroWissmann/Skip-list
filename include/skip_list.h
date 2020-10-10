@@ -273,9 +273,8 @@ private:
         void operator()(Skip_node* p) const noexcept
         {
             if (p) {
-                p->Skip_node();
-
                 auto raw_p = reinterpret_cast<std::byte*>(p);
+                p->~Skip_node();
                 delete[] raw_p;
             }
         }
@@ -518,11 +517,14 @@ Skip_list<Key, T>::allocate_node(value_type value, size_type levels)
     const auto node_size =
         sizeof(Skip_node) + (levels - 1) * sizeof(Skip_node*);
 
-    auto node = std::make_unique<std::byte[]>(node_size);
+    auto raw = new std::byte[node_size];
 
-    new (node.get()) Skip_node{value, levels, nullptr};
+    auto rv = new (raw) Skip_node(value, levels);
+    std::fill_n(rv->next, levels - 1, nullptr);
 
-    return {reinterpret_cast<Skip_node*>(node.release())};
+    return std::unique_ptr<typename Skip_list<Key, T>::Skip_node*,
+                           typename Skip_list<Key, T>::Skip_node_deleter>{
+        rv, Skip_list<Key, T>::Skip_node_deleter{}};
 }
 
 template <typename Key, typename T>
